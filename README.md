@@ -1,4 +1,4 @@
-# NEXI — Your Focus Companion
+# NEXI — Your Focus Companion built with AdaL.
 
 <div align="center">
 
@@ -157,31 +157,7 @@ NEXI is engineered around an event-driven Qt architecture decoupled from system 
        └─────────────────────────────────────────────────────────┘
 ```
 
-### Directory Structure
 
-```
-NEXI/
-├── main.py                          # Application entry point
-├── build.bat                        # Reproducible PyInstaller release script
-├── NEXI.spec                        # Windows executable build configuration
-├── requirements.txt                 # Python dependencies
-├── VERSION                          # Version identifier
-├── CHANGELOG.md                     # Release change history
-├── .env.example                     # Environment configuration reference
-└── focus_companion/
-    ├── assets/                      # Application icons (.ico, .png)
-    ├── browser_extension/           # Manifest V3 Chromium companion
-    └── app/
-        ├── core/                    # Tracker, FocusEngine, Interventions, Scheduler
-        ├── database/                # SQLite connection pool and Repository
-        ├── integrations/            # Groq AI client
-        ├── utils/                   # Win32 ctypes and Windows startup registry
-        └── ui/
-            ├── main_window.py       # Custom frameless window & layout controller
-            ├── mascot.py            # Floating animated companion widget
-            ├── components/          # Theme tokens, custom charts, cards, vector icons
-            ├── dialogs/             # Intent and Intervention popups
-            └── pages/               # Focus Center, Timeline, Rules, Radar, Settings
 ```
 
 ---

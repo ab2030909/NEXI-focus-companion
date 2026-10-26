@@ -10,6 +10,7 @@
 [![Python](https://img.shields.io/badge/python-3.11%20%7C%203.12%20%7C%203.13-3776AB?style=flat-square)](#system-requirements)
 [![UI Framework](https://img.shields.io/badge/GUI-PySide6%20(Qt%206)-41CD52?style=flat-square)](https://doc.qt.io/qtforpython-6/)
 [![Built with](https://img.shields.io/badge/built%20with-AdaL-FF6B35?style=flat-square)](#about-nexi)
+[![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg?style=flat-square)](LICENSE)
 [![Storage](https://img.shields.io/badge/storage-local%20SQLite-003B57?style=flat-square)](#privacy--data-ownership)
 
 [Get Started](#quick-start) • [Key Workflows](#core-workflows) • [Architecture](#architecture--design) • [Building](#building-a-release-binary) • [Privacy](#privacy--data-ownership)
@@ -198,7 +199,9 @@ The script cleans previous artifacts, invokes PyInstaller with all Qt dependenci
 
 ## License
 
-A formal license has not yet been selected. All rights are reserved by the author.
+This project is open source and available under the [MIT License](LICENSE).
+
+Copyright (c) 2026 Abdullah Haroon (ab2030909).
 
 ---
 

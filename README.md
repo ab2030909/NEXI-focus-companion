@@ -60,27 +60,47 @@ When attention wanders into designated distraction areas or exceeds continuous l
 
 ---
 
-## Quick Start
+## Quick Start & How to Run
 
 ### Option A: Portable Standalone Executable (Recommended)
 
-1. Download `NEXI-v1.0.0-windows-x64.zip` from [Releases](https://github.com/ab2030909/NEXI-focus-companion/releases).
-2. Extract the archive and launch `NEXI.exe`.
-3. The application will initialize its database and run quietly from your Windows system tray and desktop.
+[![Download Release](https://img.shields.io/badge/Download-NEXI%20v1.0.0%20(Windows%20x64)-FF6B35?style=for-the-badge&logo=windows)](https://github.com/ab2030909/NEXI-focus-companion/releases/latest)
 
-### Option B: Running from Source
+No installation or Python setup is required.
+
+1. Head to [**GitHub Releases**](https://github.com/ab2030909/NEXI-focus-companion/releases/latest) and download `NEXI-v1.0.0-windows-x64.zip`.
+2. Right-click the `.zip` file and select **Extract All...**.
+3. Double-click **`NEXI.exe`** to run.
+4. **Where to find NEXI**:
+   - The main window opens immediately with the **Focus Center** dashboard.
+   - A floating, animated **NEXI companion** appears on your desktop (drag anywhere, or double-click to toggle the dashboard).
+   - An orange tray icon appears in your **Windows Taskbar System Tray** (right-click for quick session controls or to reopen the window at any time).
+
+> **Note**: Because the executable is freshly built, Windows SmartScreen may show a prompt on first launch. Click **More info → Run anyway**.
+
+---
+
+### Option B: Running from Source (Developers)
+
+If you prefer running or modifying the Python source code directly:
 
 ```cmd
 # 1. Clone the repository
 git clone https://github.com/ab2030909/NEXI-focus-companion.git
 cd NEXI-focus-companion
 
-# 2. Install dependencies
+# 2. (Optional) Create and activate a virtual environment
+python -m venv venv
+venv\Scripts\activate
+
+# 3. Install required packages
 pip install -r requirements.txt
 
-# 3. Launch NEXI
+# 4. Launch the application
 python main.py
 ```
+
+Alternatively, on Windows you can simply double-click **`run_app.bat`** in the project folder to start NEXI instantly.
 
 ---
 

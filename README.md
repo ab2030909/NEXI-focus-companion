@@ -1,4 +1,4 @@
-# NEXI — Your Focus Companion built with AdaL.
+# NEXI: Your Focus Companion built with AdaL.
 
 <div align="center">
 

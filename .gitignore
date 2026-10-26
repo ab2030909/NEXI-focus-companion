@@ -1,44 +1,46 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Python Caches & Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyd
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
+# Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
 
-# testing
-/coverage
+# Packaging & Build Outputs
+build/
+dist/
+*.egg-info/
+.eggs/
 
-# next.js
-/.next/
-/out/
+# Release Artifacts (Distributables)
+release/
+*.zip
+*.tar.gz
+*.exe
 
-# production
-/build
+# Environment & Secrets (Never Commit Real Keys)
+.env
+.env.*
+!.env.example
 
-# misc
+# Local Databases, User Data & Tracking Logs
+data/
+*.db
+*.sqlite
+*.sqlite3
+
+# Windows System & IDE Artifacts
 .DS_Store
-*.pem
-
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
-
-# env files (can opt-in for committing if needed)
-.env*
-
-# local database and sessions
-/data/
-
-# vercel
-.vercel
-
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+Thumbs.db
+desktop.ini
+*.log
+.vscode/
+.idea/
+*.swp
+*.bak

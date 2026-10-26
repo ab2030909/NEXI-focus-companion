@@ -1,107 +1,120 @@
-# DevRelOS — AI-Powered Developer Relations Platform
+# NEXI — Your Focus Companion
 
-DevRelOS is a modern, full-stack operating system for Developer Relations teams, developer advocates, open-source maintainers, and developer marketing leads. It streamlines ecosystem research, campaign strategy generation, technical content drafting, community events, and outreach pipelines in a unified workspace.
-
----
-
-## 🚀 Features
-
-1. **Executive Command Dashboard (Overview)**
-   - Productivity summaries, active campaigns, events, and community pipeline counts.
-   - Interactive Recharts telemetry: developer reach, SDK clones, and channel engagement distribution.
-   - Live stream of autonomous agent background activities and upcoming event deadlines.
-
-2. **AI Campaign Builder (Core Feature)**
-   - Comprehensive campaign wizard: configure technology, target developer personas, objectives, duration, budget, and channels.
-   - Automated generation of structured campaigns across 5 tabs:
-     - **Overview**: Narrative pillars, differentiators, and target channels.
-     - **Strategy**: Developer personas, pain points, watering holes, elevator pitch, and proof points.
-     - **Content**: Scheduled multi-channel calendar, tutorial curricula, and ready-to-use social copy.
-     - **Tasks**: Interactive execution checklist with assignee and completion tracking.
-     - **Results**: Live KPI progress bars and conversion analysis.
-   - Full CRUD: Create, duplicate, edit, filter, and delete campaigns.
-
-3. **Research Lab**
-   - In-depth ecosystem research with depth selectors (*Quick Brief*, *Deep Ecosystem Analysis*, *Competitive Landscape*, *Technical Benchmark*).
-   - Findings organized into architectural themes with citations and benchmark references.
-   - Actionable takeaways and one-click "Save to Campaign" linking.
-
-4. **Content Studio**
-   - 8 content format generators: Technical Tutorials, LinkedIn Posts, X Posts & Threads, Product Launches, Developer Documentation, Blog Articles, Workshop Outlines, and Event Descriptions.
-   - Interactive Markdown editor with live preview toggle.
-   - AI revision shortcuts (*Make Concise*, *+ Benchmark Code*, custom revision prompts).
-   - Instant copy-to-clipboard and draft management.
-
-5. **Events & Community**
-   - Meetups, workshops, hackathons, and conferences management.
-   - Dual List and Timeline/Roadmap views.
-   - Built-in multi-session agenda builder with speaker tracking.
-   - Pre-event task checklist and promotional copy drafts.
-   - Post-event AI recap generator.
-
-6. **Outreach & Pipeline**
-   - CRM for speakers, conference sponsors, community champions, and OSS maintainers.
-   - Status pipeline tracking (*Lead*, *Contacted*, *In Discussion*, *Confirmed*, *Declined*).
-   - Automated personalized email pitch drafting with custom talk angles and follow-up tracking.
-
-7. **Analytics & Telemetry**
-   - Interactive Recharts visualization with time filters (*7D, 30D, Quarter, YTD*).
-   - Conversion funnels: event registrations vs. actual attendance, community growth metrics.
-   - AI strategic recommendations highlighting highest-converting formats.
-
-8. **Integrations & Settings**
-   - Pre-configured connectors for GitHub, Discord, X, Dev.to, Luma, PostHog, and AI Engines.
-   - Vault modal to store API tokens and manage connections.
-   - Workspace profile customization, team member roles, alert preferences, and JSON data backup export.
+A local-first, distraction-limiting Windows desktop productivity companion.
 
 ---
 
-## 🛠 Tech Stack
-
-- **Framework**: Next.js 16 (App Router with Turbopack)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS with custom DevRelOS design system (`#FF6B35` primary orange, `#202124` charcoal, `#F7F7F5` background)
-- **Icons**: Lucide React
-- **Charts**: Recharts
-- **State & Storage**: React Context with automatic LocalStorage persistence & memory fallback
+## Brand & Visual Identity
+- **Brand**: **NEXI**
+- **Tagline**: *"Your Focus Companion"*
+- **Color Palette**: `#111111` background, `#191919` panels, `#222222` cards, `#F5F5F5` primary text, `#929292` secondary text, `#FF6B35` vibrant orange accent.
+- **Original Companion ('NEXI')**: A futuristic floating companion with:
+  - Smooth aerodynamic white shell (`#F4F4F6`)
+  - Glossy dark oval visor (`#121214`) with glass reflection
+  - Glowing neon-orange digital expressive eyes (`#FF8B5E`)
+  - Floating lower hover pod with warm thruster glow
+  - Distinctive levitating glowing orange halo (`#FF6B35`)
+  - Smooth 30fps anti-aliased floating oscillation across 9 expressive states:
+    - **Idle**: Calm breathing hover with blinking oval eyes.
+    - **Focused**: Cyber pupils with intense focus gaze during Pomodoro sessions.
+    - **Distracted / Warning**: Wide alert eyes with red halo pulses upon distraction rule triggers.
+    - **Happy / Celebrating**: Sparkling arc eyes and confetti particles upon goal or session completion.
+    - **Sleepy**: Peaceful eyelids and floating 'z' indicator when the system is idle.
+    - **Confused**: Inquisitive asymmetrical expressions.
 
 ---
 
-## 🏃 Getting Started
+## Features
 
-### 1. Install Dependencies
+1. **System Tray & Floating Companion**:
+   - Runs in the Windows notification tray with quick focus/pause controls.
+   - Floating desktop NEXI widget (draggable anywhere, double-click to open dashboard).
+2. **Real-Time Foreground Activity Tracking**:
+   - Windows native `ctypes` foreground process detection (`GetForegroundWindow`, `QueryFullProcessImageNameW`).
+   - Windows user idle detection (`GetLastInputInfo`) prevents idle time from polluting productivity metrics.
+   - Categorizes apps into Coding, Productivity, Communication, Entertainment, Social Media, Gaming, etc.
+3. **Browser Website Hostname Detection**:
+   - Real website detection for Chrome, Edge, and Brave via Windows UI Automation & Window Title heuristics.
+   - Includes an optional local Manifest V3 Chromium extension for 100% accurate hostname detection via local loopback `127.0.0.1:19876`.
+   - Never records full URLs, query params, passwords, keystrokes, screenshots, or private/incognito browsing.
+4. **Focus Engine & Profiles**:
+   - Focus session timer with presets (Deep Work, Coding, Study, Relax, Custom).
+   - Pomodoro intervals, countdown display, and break states.
+5. **Distraction Detection & Interventions**:
+   - Rule-based alerts when daily or continuous limits are exceeded.
+   - Supportive intervention dialogs offering: *Return to Focus*, *Take 5m Break*, *Snooze 5m*, and *Continue*.
+   - Never closes tabs or kills applications without explicit user configuration.
+6. **Intent Mode (Bounded Browsing)**:
+   - Grant yourself a temporary time budget (e.g., 10 minutes) with an explicit goal before visiting potentially distracting websites like YouTube or Reddit.
+7. **Focus Radar & Analytics**:
+   - 7-day usage trend chart (Productive vs. Distracting).
+   - 24-hour daily distribution strip.
+   - Chronological Activity Timeline with category filtering.
+8. **NEXI AI Habit Coach (Groq)**:
+   - Grounded entirely in local aggregated numerical totals.
+   - Configurable model (`openai/gpt-oss-120b`).
+   - 100% optional: the desktop app works fully offline without any API key.
+9. **Theme Studio & Appearance Controls**:
+   - Centralized live theme customization across all tabs, cards, tables, charts, dialogs, and the floating mascot.
+   - Curated presets: *NEXI Dark*, *Midnight Orange*, *OLED Black*, *Warm Light*, and *Custom*.
+   - Color picker dialogs and HEX inputs for: Main Background, Panels, Cards, Primary Text, Secondary Text, Accent Brand, Borders, Warnings, and Success.
+   - Layout density options (*Comfortable* vs. *Compact*), corner styling (*Rounded* vs. *Subtle*), reduced motion animation toggle, and mascot visibility toggle.
+   - Configurable attention thresholds, intervention cooldowns, grace lockdown duration, and strict mode.
+10. **Local SQLite Storage & Privacy**:
+   - Stored in `%APPDATA%\FocusCompanion\focus_companion.db`.
+   - One-click "Clear History" and "Reset Factory Defaults" in Settings.
+
+---
+
+## Installation & Running
+
+### 1. Requirements
+- Windows 10 or Windows 11
+- Python 3.11, 3.12, or 3.13
+
+### 2. Install Dependencies
 ```bash
-npm install
+pip install -r requirements.txt
 ```
 
-### 2. Run the Development Server
+### 3. Launch the Application
 ```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-### 3. Production Build
-```bash
-npm run build
-npm run start
+python main.py
 ```
 
 ---
 
-## 🔑 Environment Variables
+## Optional Browser Extension (Chromium)
+1. Open your browser extension manager:
+   - Chrome: `chrome://extensions/`
+   - Edge: `edge://extensions/`
+   - Brave: `brave://extensions/`
+2. Enable **Developer mode** (top-right toggle).
+3. Click **Load unpacked** and select the `focus_companion/browser_extension` folder.
 
-To connect real AI completions via Groq or live integrations, configure `.env.local`:
+---
 
-```env
-# Primary LLM Provider (Groq)
-GROQ_API_KEY=your_groq_api_key_here
-GROQ_MODEL=openai/gpt-oss-120b
+## Optional Groq AI Configuration
+1. Obtain an API key from [Groq Console](https://console.groq.com/).
+2. Open NEXI > **Settings** > **NEXI AI Coach**.
+3. Paste your key into `GROQ_API_KEY` (saved locally in your SQLite database).
 
-# Optional: GitHub API Token (for public repo analysis)
-GITHUB_TOKEN=your_github_token_here
+---
 
-# Optional: Live Research Search Grounding (Tavily or Serper)
-TAVILY_API_KEY=
-SERPER_API_KEY=
+---
+
+## Releases & Standalone Executable
+You can download the pre-compiled, standalone portable executable from [GitHub Releases](https://github.com/ab2030909/NEXI-focus-companion/releases). No Python installation is required to run the release package.
+
+1. Download `NEXI-v1.0.0-windows-x64.zip`.
+2. Extract the archive and double-click `NEXI.exe`.
+3. (Optional) Load the bundled `browser_extension` folder in your Chromium browser to enable deep hostname tracking.
+
+---
+
+## Building from Source (Reproducible Build)
+To compile a fresh standalone Windows executable:
+```cmd
+build.bat
 ```
+This clean-compiles the application using PyInstaller with bundled Qt dependencies, embeds `focus_companion/assets/icon.ico`, calculates SHA256 checksums, and outputs the release bundle into `release/NEXI-v1.0.0/` and `release/NEXI-v1.0.0-windows-x64.zip`.

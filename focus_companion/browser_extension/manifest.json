@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Focus Companion - Local Browser Helper",
+  "version": "1.0.0",
+  "description": "Sends only the active tab's hostname to the local Focus Companion desktop app (127.0.0.1:19876). No URLs, paths, or content are ever sent.",
+  "permissions": [
+    "tabs",
+    "scripting"
+  ],
+  "host_permissions": [
+    "http://127.0.0.1:19876/*",
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
+}

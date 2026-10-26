@@ -710,8 +710,8 @@ class MainWindow(QMainWindow):
         # Show prompt if not already showing one
         if self._active_dialog is None:
             fullscreen_pref = self.repo.get_setting("fullscreen_lockdown_enabled", "true").lower() == "true"
-            snooze_min = int(self.repo.get_setting("reminder_snooze_duration_min", "5"))
-            countdown_sec = event.get("lockdown_countdown", 15)
+            snooze_min = int(self.repo.get_setting("snooze_duration_min", "5"))
+            countdown_sec = event.get("countdown_sec", 15)
 
             self._active_dialog = InterventionDialog(
                 source=event["source"],

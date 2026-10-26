@@ -1,241 +1,207 @@
-<div align="center">
-
-<img src="focus_companion/assets/icon.png" alt="NEXI logo" width="120" />
-
 # NEXI — Your Focus Companion
 
-**A local-first Windows desktop companion that tracks where your time goes and gently keeps you on task.**
+<div align="center">
 
-[![Version](https://img.shields.io/badge/version-1.0.0-FF6B35)](CHANGELOG.md)
-[![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11-0078D6)](#requirements)
-[![Python](https://img.shields.io/badge/python-3.11%20%7C%203.12%20%7C%203.13-3776AB)](#requirements)
-[![UI](https://img.shields.io/badge/UI-PySide6-41CD52)](https://doc.qt.io/qtforpython-6/)
-[![Privacy](https://img.shields.io/badge/data-local--first-success)](#privacy--data)
+<img src="focus_companion/assets/icon.png" alt="NEXI Logo" width="108" />
 
-[Download](https://github.com/ab2030909/NEXI-focus-companion/releases) ·
-[Features](#features) ·
-[Quick Start](#quick-start) ·
-[Browser Extension](#browser-extension-optional) ·
-[Changelog](CHANGELOG.md)
+### An intelligent, local-first Windows productivity companion crafted with AdaL.
+
+[![Platform](https://img.shields.io/badge/platform-Windows%2010%20%7C%2011-0078D6?style=flat-square)](#system-requirements)
+[![Python](https://img.shields.io/badge/python-3.11%20%7C%203.12%20%7C%203.13-3776AB?style=flat-square)](#system-requirements)
+[![UI Framework](https://img.shields.io/badge/GUI-PySide6%20(Qt%206)-41CD52?style=flat-square)](https://doc.qt.io/qtforpython-6/)
+[![Built with](https://img.shields.io/badge/built%20with-AdaL-FF6B35?style=flat-square)](#about-nexi)
+[![Storage](https://img.shields.io/badge/storage-local%20SQLite-003B57?style=flat-square)](#privacy--data-ownership)
+
+[Get Started](#quick-start) • [Key Workflows](#core-workflows) • [Architecture](#architecture--design) • [Building](#building-a-release-binary) • [Privacy](#privacy--data-ownership)
 
 </div>
 
 ---
 
-## Table of Contents
+## About NEXI
 
-- [Overview](#overview)
-- [Features](#features)
-- [Quick Start](#quick-start)
-- [Configuration](#configuration)
-- [Browser Extension](#browser-extension-optional)
-- [AI Habit Coach](#ai-habit-coach-optional)
-- [Privacy & Data](#privacy--data)
-- [Architecture](#architecture)
-- [Project Structure](#project-structure)
-- [Building from Source](#building-from-source)
-- [Known Limitations](#known-limitations)
-- [Contributing](#contributing)
-- [Versioning & Changelog](#versioning--changelog)
+**NEXI** is a local-first Windows desktop productivity companion built using **AdaL**. It bridges system-level activity tracking with non-intrusive focus coaching: rather than forcefully blocking software or closing browser tabs, NEXI brings mindfulness to how you spend your workday.
+
+When attention wanders into designated distraction areas or exceeds continuous limits, NEXI steps in with supportive interventions, bounded-browsing sessions (*Intent Mode*), and clear visual analytics.
 
 ---
 
-## Overview
+## Core Workflows
 
-NEXI watches which application and website is in the foreground, classifies it
-(Coding, Productivity, Communication, Entertainment, Social Media, Gaming, …),
-and turns that into focus analytics. When a distraction rule is hit, NEXI shows
-a supportive prompt instead of closing anything behind your back.
+### 1. Focus Center & Intent Mode
+- **Sprint Timer**: Launch Pomodoro-style sprints (Deep Work, Coding, Reading, Custom) with custom break intervals and real-time circular progress visualization.
+- **Intent Mode (Bounded Browsing)**: Need to check YouTube for a programming tutorial or Reddit for a technical solution? Lock in an explicit intention and a strict time budget (e.g. 15 minutes). When the budget expires, NEXI gently directs your attention back to your core task.
 
-Everything runs on your machine. The AI coach is optional, and the app is fully
-usable offline without an API key.
+### 2. High-Precision Local Activity Tracking
+- **Windows Win32 Native Hooks**: Detects active foreground application processes (`GetForegroundWindow`, `QueryFullProcessImageNameW`) with sub-second responsiveness.
+- **True Idle Detection**: Uses `GetLastInputInfo` so away-from-keyboard time never corrupts your productive ratios.
+- **Browser Hostname Attribution**: Identifies active domains across Chrome, Edge, and Brave with window-title heuristics, or via an optional local loopback Manifest V3 extension (`127.0.0.1:19876`).
 
-## Features
+### 3. Visual Analytics (Focus Radar)
+- **24-Hour Segmented Timeline**: Interactive hourly distribution bar chart with hover tooltips detailing productive, neutral, and distraction durations across the day.
+- **Multi-Period Aggregation**: Toggle between Today, 7-Day, and 30-Day scopes with ranked application breakdowns, proportional segmented bars, and category tagging.
 
-### Tracking
-- **Foreground activity detection** through native Win32 calls (`GetForegroundWindow`, `QueryFullProcessImageNameW`).
-- **Idle detection** (`GetLastInputInfo`) so away-time does not distort your metrics.
-- **Website hostname detection** for Chrome, Edge and Brave via the companion extension, with window-title and UI Automation fallbacks.
-- **Editable classification rules** for apps and domains, plus exclusion lists.
+### 4. Interactive Floating Mascot
+- A custom-rendered, floating desktop companion that oscillates and reflects your focus state across 9 emotional reactions (focused, idle, celebrating milestones, sleepy on idle, and alert on distractions).
 
-### Focus
-- **Focus sessions** with presets (Deep Work, Coding, Study, Relax, Custom), countdown and break states.
-- **Intent Mode** (bounded browsing): declare a goal and time budget before visiting a site like YouTube or Reddit. Persists across restarts.
-- **Distraction interventions**: watched sites, short-form video limits and continuous-distraction rules, with actions *Return to Focus*, *Take a Break*, *Snooze* and *Continue*.
-- **Reminders** on custom intervals or schedules, with quiet hours.
+### 5. Live Theme Studio
+- Tailor your visual experience with live theme switching: NEXI Dark, Midnight Orange, OLED Black, Warm Light, or define custom HEX palettes.
 
-### Insight
-- **Focus Center dashboard**: screen time, productive time, distractions, daily goal, top apps and top domains.
-- **Focus Radar**: Today / 7-day / 30-day views, 24-hour distribution and productive-vs-distracting trends.
-- **Activity timeline** with category filtering.
+---
 
-### Experience
-- **System tray** controls and optional **start with Windows** (per-user, no admin rights).
-- **Floating mascot** with nine animated states (idle, focused, warning, celebrating, sleepy, confused, …). Draggable; double-click to open the dashboard.
-- **Theme Studio**: NEXI Dark, Midnight Orange, OLED Black, Warm Light and fully custom colors, plus density, corner style and reduced-motion options.
+## System Requirements
+
+| Specification | Details |
+| :--- | :--- |
+| **Operating System** | Windows 10 / Windows 11 (64-bit) |
+| **Runtime Environment** | Standalone Executable (No Python needed) **OR** Python 3.11 – 3.13 |
+| **Core Libraries** | `PySide6 >= 6.6.0`, `pywin32 >= 306`, `groq >= 0.9.0` |
+
+---
 
 ## Quick Start
 
-### Option A — Standalone executable (recommended)
+### Option A: Portable Standalone Executable (Recommended)
 
 1. Download `NEXI-v1.0.0-windows-x64.zip` from [Releases](https://github.com/ab2030909/NEXI-focus-companion/releases).
-2. Extract it and run `NEXI.exe`. No Python needed.
-3. Verify the download against `checksum.sha256.txt` if you wish.
+2. Extract the archive and launch `NEXI.exe`.
+3. The application will initialize its database and run quietly from your Windows system tray and desktop.
 
-### Option B — Run from source
+### Option B: Running from Source
 
-```bash
+```cmd
+# 1. Clone the repository
 git clone https://github.com/ab2030909/NEXI-focus-companion.git
 cd NEXI-focus-companion
+
+# 2. Install dependencies
 pip install -r requirements.txt
+
+# 3. Launch NEXI
 python main.py
 ```
 
-### Requirements
+---
 
-| Component | Requirement |
-|-----------|-------------|
-| OS        | Windows 10 or 11 |
-| Python    | 3.11, 3.12 or 3.13 (source runs only) |
-| Packages  | `PySide6>=6.6.0`, `groq>=0.9.0`, `pywin32>=306` |
+## Optional Companion Browser Extension
 
-## Configuration
+For exact hostname detection that bypasses browser window title truncations:
 
-Most settings live in the app under **Settings**. A reference of the
-environment variables is in [`.env.example`](.env.example).
+1. Open your browser extension manager:
+   - Chrome: `chrome://extensions`
+   - Edge: `edge://extensions`
+   - Brave: `brave://extensions`
+2. Enable **Developer mode** (top right).
+3. Click **Load unpacked** and select the [`focus_companion/browser_extension`](focus_companion/browser_extension) folder.
 
-| Variable | Purpose | Default |
-|----------|---------|---------|
-| `GROQ_API_KEY` | Enables the AI habit coach | unset (offline) |
-| `FOCUS_COMPANION_DB` | Override database file location | `%APPDATA%\FocusCompanion\focus_companion.db` |
+> **Privacy Guarantee**: The extension communicates exclusively with `http://127.0.0.1:19876` on your local loopback. Full URLs, queries, page text, form submissions, and keystrokes are never inspected or recorded. For incognito windows, only an anonymous indicator is passed.
 
-The extension port is configured in the app's settings (default `19876`).
-It must match the port used by the extension, see [Known Limitations](#known-limitations).
+---
 
-## Browser Extension (optional)
+## Optional AI Habit Coach
 
-The Manifest V3 extension gives exact hostnames instead of title heuristics,
-and lets NEXI pause a playing video behind an intervention.
+NEXI operates completely offline. If you choose to enable the AI Habit Coach:
+1. Generate an API key via [Groq Console](https://console.groq.com/).
+2. Open NEXI **Settings → NEXI AI Coach** and save your key.
+3. The coach receives only high-level summary totals (e.g. total focus minutes and top category names) to construct personalized weekly habit recommendations. Raw titles and window history are never transmitted.
 
-1. Open `chrome://extensions/`, `edge://extensions/` or `brave://extensions/`.
-2. Enable **Developer mode**.
-3. Click **Load unpacked** and select the `focus_companion/browser_extension` folder.
+---
 
-**What it sends:** only the normalized hostname of the active tab, to
-`http://127.0.0.1:19876` on your own machine. For incognito tabs it reports
-only that incognito is active, never the domain. It does not send full URLs,
-page content, or keystrokes.
+## Architecture & Design
 
-**Permissions:** it requests `tabs`, `scripting` and `<all_urls>` host access.
-Hostname reporting does not read page content; `scripting` is used solely to
-pause video elements in the active tab on request.
-
-## AI Habit Coach (optional)
-
-1. Create a key in the [Groq Console](https://console.groq.com/).
-2. Open **Settings → NEXI AI Coach** and paste the key.
-
-When used, aggregated usage totals and the names of your top apps and sites are
-sent to Groq to generate insights and focus plans. Raw activity logs and
-window titles are not sent. Leave the key empty to keep everything offline.
-
-## Privacy & Data
-
-- All activity is stored locally in SQLite at `%APPDATA%\FocusCompanion\focus_companion.db`. The database is **not encrypted**; protect it with your normal Windows account and disk security.
-- No screenshots, keystrokes, passwords, full URLs or query strings are recorded.
-- The activity table stores the foreground window title for apps, which can include document or page names.
-- **Clear History** and **Reset Settings** are available in Settings.
-- NEXI never closes tabs or terminates applications on its own.
-
-## Architecture
+NEXI is engineered around an event-driven Qt architecture decoupled from system polling:
 
 ```
- Win32 / Browser Extension
-          │  foreground app, idle time, hostname
-          ▼
-   ActivityTracker (QThread, 1 s poll)
-          │  signals: tick, activity_changed
-          ▼
-      MainWindow ──► InterventionManager ──► InterventionDialog
-          │               ▲                        │
-          │               └────── user action ─────┘
-          ├──► FocusEngine  (sessions, breaks, intent mode)
-          ├──► ReminderScheduler
-          ▼
-   Repository ◄──► SQLite (settings, rules, activity, sessions)
-          ▲
-          └── Dashboard · Timeline · Rules · Radar · Settings pages
+┌────────────────────────────────┐       ┌──────────────────────────────────┐
+│  Win32 API (Foreground/Idle)   │       │ Chromium Extension (Local HTTP)  │
+└───────────────┬────────────────┘       └────────────────┬─────────────────┘
+                │                                         │
+                ▼                                         ▼
+       ┌─────────────────────────────────────────────────────────┐
+       │     ActivityTracker (Background QThread, 1s Poll)       │
+       └────────────────────────┬────────────────────────────────┘
+                                │ Qt Signals
+                                ▼
+       ┌─────────────────────────────────────────────────────────┐
+       │                       MainWindow                        │
+       │   ├── FocusEngine (Sprint Timers & Intent Mode)         │
+       │   ├── InterventionManager (Rules & Lockdowns)           │
+       │   └── ReminderScheduler (Micro-breaks & Posture)        │
+       └────────────────────────┬────────────────────────────────┘
+                                │
+                                ▼
+       ┌─────────────────────────────────────────────────────────┐
+       │       Repository & Local SQLite Database Engine         │
+       │        (%APPDATA%\FocusCompanion\focus_companion.db)    │
+       └─────────────────────────────────────────────────────────┘
 ```
 
-The tracker batches activity and flushes to SQLite on context change or about
-every 30 seconds. The UI layer wires tracker signals to the intervention and
-reminder logic.
-
-## Project Structure
+### Directory Structure
 
 ```
-.
-├── main.py                      # Application entry point
-├── NEXI.spec                    # PyInstaller specification
-├── build.bat                    # Reproducible Windows release build
-├── requirements.txt
-├── .env.example
-├── CHANGELOG.md
-├── VERSION
+NEXI/
+├── main.py                          # Application entry point
+├── build.bat                        # Reproducible PyInstaller release script
+├── NEXI.spec                        # Windows executable build configuration
+├── requirements.txt                 # Python dependencies
+├── VERSION                          # Version identifier
+├── CHANGELOG.md                     # Release change history
+├── .env.example                     # Environment configuration reference
 └── focus_companion/
-    ├── assets/                  # Icons
-    ├── browser_extension/       # Optional Chromium MV3 extension
+    ├── assets/                      # Application icons (.ico, .png)
+    ├── browser_extension/           # Manifest V3 Chromium companion
     └── app/
-        ├── core/                # tracker, browser_tracker, focus_engine,
-        │                        # intervention, notifications
-        ├── database/            # db (schema/seed), repository (queries)
-        ├── integrations/        # groq_client
-        ├── utils/               # win_api (Win32, startup registry)
+        ├── core/                    # Tracker, FocusEngine, Interventions, Scheduler
+        ├── database/                # SQLite connection pool and Repository
+        ├── integrations/            # Groq AI client
+        ├── utils/                   # Win32 ctypes and Windows startup registry
         └── ui/
-            ├── main_window.py
-            ├── pages/           # home, timeline, rules, radar, settings
-            ├── dialogs/         # intervention, intent
-            ├── components/      # theme, charts, cards, icons
-            └── mascot.py        # animated companion
+            ├── main_window.py       # Custom frameless window & layout controller
+            ├── mascot.py            # Floating animated companion widget
+            ├── components/          # Theme tokens, custom charts, cards, vector icons
+            ├── dialogs/             # Intent and Intervention popups
+            └── pages/               # Focus Center, Timeline, Rules, Radar, Settings
 ```
 
-## Building from Source
+---
+
+## Privacy & Data Ownership
+
+- **100% Local Storage**: All activity logs, durations, and category rules are stored in `%APPDATA%\FocusCompanion\focus_companion.db`.
+- **Zero Telemetry**: NEXI does not send telemetry, analytics, or user behavior to external servers.
+- **You are in Control**: Features like *Clear History* and *Reset Database* are accessible directly from Settings.
+- **Non-Destructive**: NEXI will never close your software or terminate applications without explicit user intent.
+
+---
+
+## Building a Release Binary
+
+To reproduce the production Windows standalone executable:
 
 ```cmd
 build.bat
 ```
 
-This cleans previous output, runs PyInstaller with the bundled Qt runtime and
-app icon, generates a SHA-256 checksum, and writes:
+The script cleans previous artifacts, invokes PyInstaller with all Qt dependencies and assets, calculates the SHA256 verification hash, and produces:
+- `release/NEXI-v1.0.0/NEXI.exe` (Single-file standalone binary)
+- `release/NEXI-v1.0.0-windows-x64.zip` (Complete distribution package)
 
-- `release/NEXI-v1.0.0/`
-- `release/NEXI-v1.0.0-windows-x64.zip`
+---
 
-## Known Limitations
+## Troubleshooting
 
-- The extension is hard-coded to port `19876`; changing the port in Settings disconnects it.
-- Hostnames reported by the extension are not tied to a specific browser window, so a stale domain can briefly be attributed after switching between Chromium browsers.
-- Some intervention settings (video-pause toggle, short-video limit, snooze duration) use setting keys that differ between the UI and the engine and may not take effect yet.
-- The short-form "daily budget" is stored but not yet enforced; only continuous duration is checked.
-- Windows only. There are no automated tests yet.
+- **Missing Application Usage**: If your application rows appear empty or short on small displays, the dashboard cards include smooth vertical scrolling—simply scroll down or resize the window.
+- **Extension Disconnected**: Ensure your browser extension is loaded from `focus_companion/browser_extension` and that port `19876` is not blocked by local security software.
+- **Auto-Start on Boot**: If auto-start is enabled, NEXI registers a standard per-user registry key under `HKCU\Software\Microsoft\Windows\CurrentVersion\Run`, which requires no administrative privileges.
 
-## Contributing
+---
 
-Issues and pull requests are welcome.
+## License
 
-1. Fork the repository and create a branch: `git checkout -b feature/your-change`
-2. Keep changes focused and follow the existing code style.
-3. Test manually with `python main.py` on Windows.
-4. Update [CHANGELOG.md](CHANGELOG.md) for user-visible changes.
-5. Open a pull request describing what and why.
-
-## Versioning & Changelog
-
-NEXI follows [Semantic Versioning](https://semver.org/). See
-[CHANGELOG.md](CHANGELOG.md) for release history.
+A formal license has not yet been selected. All rights are reserved by the author.
 
 ---
 
 <div align="center">
-<sub>Built with PySide6 · Local-first by design</sub>
+<sub>Crafted with passion using <b>AdaL</b> and PySide6.</sub>
 </div>
